@@ -99,7 +99,8 @@ class Model:
             model = self.instantiate()
             if len(np.unique(y_tr)) > 1:
                 model.fit(x_tr, y_tr)
-                y_predicted[test_idx] = model.predict(x_te)
+                # y_predicted[test_idx] = model.predict(x_te)
+                y_predicted[test_idx] = np.expand_dims(model.predict(x_te), axis=1)
             else:
                 y_predicted[test_idx] = y_tr[0]
             cv_errors[i] = self.error(y_te, y_predicted[test_idx])

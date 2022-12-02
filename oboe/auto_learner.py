@@ -405,7 +405,8 @@ class AutoLearner:
                     sample_models[i].sampled = True
                     self.new_row[:, to_sample[i]] = cv_error.mean()
                     self.sampled_models[to_sample[i]] = sample_models[i]
-                imputed = impute(self.error_matrix, self.new_row, list(self.sampled_indices), rank=rank)
+                # imputed = impute(self.error_matrix, self.new_row, list(self.sampled_indices), rank=rank)
+                imputed = impute(self.error_matrix.to_numpy(), self.new_row, list(self.sampled_indices), rank=rank)
 
                 # impute ALL entries
                 # unknown = sorted(list(set(range(self.new_row.shape[1])) - self.sampled_indices))
